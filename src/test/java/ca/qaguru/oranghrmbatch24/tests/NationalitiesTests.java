@@ -19,7 +19,7 @@ public class NationalitiesTests extends TestBase
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
         nationalitypage.AddButtonVisibleClickable();
         nationalitypage.addTextBoxvisible();
-        boolean banner=nationalitypage.saveNewNationality("Aaaa NationalitySample");
+        boolean banner=nationalitypage.saveNewNationality("AaaaSample");
         Assert.assertEquals(banner,true,"display banner not visible");
     }
 
@@ -46,7 +46,7 @@ public class NationalitiesTests extends TestBase
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
         nationalitypage.editButtonVisibleClickable();
         nationalitypage.editTextBoxvisible();
-        boolean banner=nationalitypage.editExistingNationality("Bbbb NationalitySample");
+        boolean banner=nationalitypage.editExistingNationality("BbbbSample");
         Assert.assertEquals(banner,true,"display banner");
     }
 
