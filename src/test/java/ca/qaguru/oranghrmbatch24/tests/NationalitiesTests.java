@@ -1,6 +1,7 @@
 package ca.qaguru.oranghrmbatch24.tests;
 import ca.qaguru.oranghrmbatch24.library.TestBase;
 import ca.qaguru.oranghrmbatch24.pages.*;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 public class NationalitiesTests extends TestBase
@@ -8,6 +9,7 @@ public class NationalitiesTests extends TestBase
     LoginPage loginPage;
     HeaderPage headerPage;
     NationalitiesPage nationalitypage;
+
     @Test(priority = 1)
     public void addNewNationality() {
         loginPage = new LoginPage(driver);
@@ -15,8 +17,10 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
+        nationalitypage.AddButtonVisibleClickable();
+        nationalitypage.addTextBoxvisible();
         boolean banner=nationalitypage.saveNewNationality("Aaaa NationalitySample");
-        Assert.assertEquals(banner,true,"display banner");
+        Assert.assertEquals(banner,true,"display banner not visible");
     }
 
     @Test(priority = 2)
@@ -27,8 +31,10 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
+        nationalitypage.cancelAddButtonVisibleClickable();
         nationalitypage.cancelSaveNewNationality();
     }
+
 
     @Test(priority = 3)
     public void EditNationality()
@@ -38,6 +44,8 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
+        nationalitypage.editButtonVisibleClickable();
+        nationalitypage.editTextBoxvisible();
         boolean banner=nationalitypage.editExistingNationality("Bbbb NationalitySample");
         Assert.assertEquals(banner,true,"display banner");
     }
@@ -50,6 +58,7 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
+        nationalitypage.cancelEditButtonVisibleClickable();
         nationalitypage.cancelEditExistingNationality();
     }
 
@@ -61,6 +70,8 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
+        nationalitypage.deleteButtonVisibleClickable();
+        nationalitypage.deleteConfirmButtonVisibleClickable();
         boolean banner=nationalitypage.deleteExistingNationality();
         Assert.assertEquals(banner,true,"display banner");
     }
@@ -73,6 +84,7 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
+        nationalitypage.cancelDeleteButtonVisibleClickable();
         nationalitypage.cancelDeleteExistingNationality();
     }
 
@@ -83,6 +95,7 @@ public class NationalitiesTests extends TestBase
         headerPage = new HeaderPage(driver);
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
+        nationalitypage.logoutDropdownMenuVisibleClickable();
         nationalitypage.logout();
         driver.close();
     }
