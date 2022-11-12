@@ -1,5 +1,6 @@
 package ca.qaguru.oranghrmbatch24.library;
 
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
@@ -22,6 +23,7 @@ public abstract class PageBase {
     private static final int REATTEMPT_DELAY = 500;
     protected static final int MENU_SELECTION_DELAY = 1000;
 
+
     public PageBase(WebDriver driver)
     {
         this.driver = driver;
@@ -35,19 +37,18 @@ public abstract class PageBase {
                             .elementToBeClickable(by))
                     .click();
             log.debug("click({}) done sucessfully",by);
-        } catch (StaleElementReferenceException exception)
-        {
+
+        } catch (StaleElementReferenceException exception) {
             sleep(REATTEMPT_DELAY);
             log.debug("click({}) failed - StaleElementReferenceException. Attempting again...",by);
             click(by);
-        }
-        catch (ElementNotInteractableException exception)
-        {
+        }catch (ElementNotInteractableException exception) {
             sleep(REATTEMPT_DELAY);
             log.debug("click({}) failed - ElementNotInteractableException. Attempting again...",by);
             click(by);
         }
     }
+
     protected void mouseHover(By by)
     {
         try
@@ -59,22 +60,18 @@ public abstract class PageBase {
             Actions action = new Actions(driver);
             action.moveToElement(we).build().perform();
             log.debug("mouseHover({}) done sucessfully",by);
-        }
-        catch (StaleElementReferenceException exception)
-        {
+        } catch (StaleElementReferenceException exception) {
             sleep(REATTEMPT_DELAY);
             log.debug("mouseHover({}) failed - StaleElementReferenceException. Attempting again...",by);
             mouseHover(by);
-        }
-        catch (ElementNotInteractableException exception)
-        {
+        }catch (ElementNotInteractableException exception) {
+
             sleep(REATTEMPT_DELAY);
             log.debug("mouseHover({}) failed - ElementNotInteractableException. Attempting again...",by);
             mouseHover(by);
         }
     }
-    protected void mouseMove(int offsetX, int offsetY)
-    {
+    protected void mouseMove(int offsetX, int offsetY) {
         try {
             Actions action = new Actions(driver);
             action.moveByOffset(offsetX,offsetY).build().perform();
