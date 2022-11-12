@@ -16,7 +16,7 @@ public class NationalitiesTests extends TestBase
         nationalitypage = new NationalitiesPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         headerPage.selectMenu(MenuOptions.NATIONALITIES);
-        nationalitypage.AddButtonVisibleClickable();
+        nationalitypage.addButtonVisibleClickable();
         nationalitypage.addTextBoxvisible();
         boolean banner=nationalitypage.saveNewNationality("AaaaSample");
         Assert.assertEquals(banner,true,"display banner not visible");
@@ -96,6 +96,5 @@ public class NationalitiesTests extends TestBase
         loginPage.login("Admin", "admin123", true, null);
         nationalitypage.logoutDropdownMenuVisibleClickable();
         nationalitypage.logout();
-        driver.close();
     }
 }

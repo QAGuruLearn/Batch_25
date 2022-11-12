@@ -27,7 +27,7 @@ public class NationalitiesPage extends PageBase {
         super(driver);
     }
 
-    public void AddButtonVisibleClickable()
+    public void addButtonVisibleClickable()
     {
         new WebDriverWait(driver,Duration.ofSeconds(wait_time))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(NationAddBtn)));
@@ -93,13 +93,6 @@ public class NationalitiesPage extends PageBase {
         boolean dis=driver.findElement(By.xpath(Banner)).isDisplayed();
         System.out.println("green banner with SUCCESS message visible :"+dis);
         return dis;
-       /*
-        driver.findElement(By.xpath(Outsidefield)).sendKeys(Keys.TAB);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].value = '';",driver.findElement(By.xpath(NationTxtLevel)));
-        js.executeScript("arguments[0].value = '"+Bbbb+"';",driver.findElement(By.xpath(NationTxtLevel)));
-        js.executeScript("arguments[0].click();" ,driver.findElement(By.xpath(EditSaveButton)));
-       */
     }
     public void cancelEditButtonVisibleClickable()
     {
