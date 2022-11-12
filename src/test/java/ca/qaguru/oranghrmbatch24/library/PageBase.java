@@ -1,7 +1,10 @@
 package ca.qaguru.oranghrmbatch24.library;
 
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -15,17 +18,21 @@ import java.util.stream.Collectors;
 @Slf4j
 public abstract class PageBase {
     protected WebDriver driver;
-    private final long WAIT_TIME = 7L;
+    private final long WAIT_TIME = 3L;
     private static final int DEF_MAX_TRIALS = 10;
     private static final int REATTEMPT_DELAY = 500;
     protected static final int MENU_SELECTION_DELAY = 1000;
 
-    public PageBase(WebDriver driver) {
+
+    public PageBase(WebDriver driver)
+    {
         this.driver = driver;
     }
-    protected void click(By by) {
-        try {
-            new WebDriverWait(driver, Duration.ofSeconds(5))
+    protected void click(By by)
+    {
+        try
+        {
+            new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME) )
                     .until(ExpectedConditions
                             .elementToBeClickable(by))
                     .click();
@@ -41,21 +48,24 @@ public abstract class PageBase {
             click(by);
         }
     }
-    protected void mouseHover(By by) {
-        try {
-            WebElement we = new WebDriverWait(driver,WAIT_TIME)
+
+    protected void mouseHover(By by)
+    {
+        try
+        {
+            WebElement we = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by));
 //            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", we);
             Actions action = new Actions(driver);
             action.moveToElement(we).build().perform();
             log.debug("mouseHover({}) done sucessfully",by);
-
         } catch (StaleElementReferenceException exception) {
             sleep(REATTEMPT_DELAY);
             log.debug("mouseHover({}) failed - StaleElementReferenceException. Attempting again...",by);
             mouseHover(by);
         }catch (ElementNotInteractableException exception) {
+
             sleep(REATTEMPT_DELAY);
             log.debug("mouseHover({}) failed - ElementNotInteractableException. Attempting again...",by);
             mouseHover(by);
@@ -92,7 +102,7 @@ public abstract class PageBase {
             }
 
             try {
-                WebElement we = new WebDriverWait(driver, WAIT_TIME)
+                WebElement we = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                         .until(ExpectedConditions
                                 .presenceOfElementLocated(by));
                 we.clear();
@@ -135,7 +145,7 @@ public abstract class PageBase {
             }
 
             try {
-                WebElement we = new WebDriverWait(driver, WAIT_TIME)
+                WebElement we = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                         .until(ExpectedConditions
                                 .presenceOfElementLocated(by));
                 we.sendKeys(text);
@@ -157,7 +167,7 @@ public abstract class PageBase {
 
     protected void select(By by, String visibleText) {
         try {
-            new Select(new WebDriverWait(driver,WAIT_TIME)
+            new Select(new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by)))
                     .selectByVisibleText(visibleText);
@@ -179,7 +189,7 @@ public abstract class PageBase {
     }
     protected List<String> getListBoxItems(By by) {
         try {
-            List<String> items =  new Select(new WebDriverWait(driver,WAIT_TIME)
+            List<String> items =  new Select(new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by)))
                     .getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
@@ -197,14 +207,14 @@ public abstract class PageBase {
 
 
     protected String getText(By by) {
-        return new WebDriverWait(driver,WAIT_TIME)
+        return new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                 .until(ExpectedConditions
                         .elementToBeClickable(by))
                 .getText();
     }
     protected boolean isElementPresent(By by) {
         try {
-            new WebDriverWait(driver,WAIT_TIME)
+            new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .presenceOfAllElementsLocatedBy(by));
         }catch (Exception e){
@@ -214,7 +224,7 @@ public abstract class PageBase {
     }
     protected boolean isElementVisible(By by) {
         try {
-            new WebDriverWait(driver,WAIT_TIME)
+            new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .visibilityOfAllElementsLocatedBy(by));
         }catch (Exception e){
@@ -224,7 +234,7 @@ public abstract class PageBase {
     }
     protected boolean isElementClickable(By by) {
         try {
-            new WebDriverWait(driver,WAIT_TIME)
+            new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by));
         }catch (Exception e){
@@ -243,14 +253,14 @@ public abstract class PageBase {
     //Ignore
     protected void clickJSE(By by){
         JavascriptExecutor js=(JavascriptExecutor) driver;
-        WebElement webElement = new WebDriverWait(driver,WAIT_TIME)
+        WebElement webElement = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                 .until(ExpectedConditions
                         .elementToBeClickable(by));
         js.executeScript("arguments[0].click()", webElement);
     }
     protected void scrollInToView(By by){
         try {
-            WebElement webElement = new WebDriverWait(driver,WAIT_TIME)
+            WebElement webElement = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by));
             Actions actions = new Actions(driver);
@@ -274,7 +284,7 @@ public abstract class PageBase {
         if(retries[0]<=0) return;
 
         try {
-            WebElement webElement = new WebDriverWait(driver,WAIT_TIME)
+            WebElement webElement = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by));
             click(by);
@@ -310,7 +320,7 @@ public abstract class PageBase {
         }
 
         try {
-            WebElement webElement = new WebDriverWait(driver,WAIT_TIME)
+            WebElement webElement = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .elementToBeClickable(by));
             click(by);
@@ -334,7 +344,7 @@ public abstract class PageBase {
     }
     protected Rectangle getRect(By by){
         try {
-            WebElement webElement = new WebDriverWait(driver,WAIT_TIME)
+            WebElement webElement = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
                     .until(ExpectedConditions
                             .visibilityOfElementLocated(by));
             return webElement.getRect();
