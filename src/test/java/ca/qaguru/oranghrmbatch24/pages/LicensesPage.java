@@ -10,28 +10,29 @@ import java.time.Duration;
 
 public class LicensesPage extends PageBase {
 
-    private final String LicAddBtn = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/div[1]/div/button";
-    private final String LicTextName = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/input";
+    private final String LicAddBtn = "//*[contains(@class,'secondary')]";
+
+    private final String LicTextName = "(//*[contains(@class,'input')])[5]";
+
     private final String LicSaveBtn = "//button[@type='submit']";
     private final String Banner = "//*[@id=\"oxd-toaster_1\"]/div";
 
     private final String LicEditSaveBtn = "//button[@type='submit']";
 
-    private final String LicPenBtn = "(//*[@class='oxd-icon-button oxd-table-cell-action-space'][@type='button'])[10]";
+    private final String LicPenBtn = "(//*[contains(@class,'button')])[13]";
 
-    private final String LicEditNameBtn = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/input";
+    private final String LicEditNameBtn = "(//*[contains(@class,'input')])[5]";
 
-    private final String LicDeleteBtn = "(//*[@class='oxd-icon-button oxd-table-cell-action-space'][@type='button'])[9]";
+    private final String LicDeleteBtn = "(//*[contains(@class,'button')])[12]";
 
-    private final String LicDeleteYesBtn = "(//*[@class='oxd-button oxd-button--medium oxd-button--label-danger orangehrm-button-margin'][@type='button'])";
+    private final String LicDeleteYesBtn = "(//*[@type='button'])[18]";
 
-    private final String getIdLicCancelBtn = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[2]/button[1]";
 
     public LicensesPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean SaveNewLicenses(String LicName) {
+    public boolean saveNewLicenses(String LicName) {
         click(By.xpath(LicAddBtn));
         setText(By.xpath(LicTextName), LicName);
         click(By.xpath(LicSaveBtn));
@@ -44,7 +45,7 @@ public class LicensesPage extends PageBase {
 
     }
 
-    public boolean EditLicense(String LicName1) {
+    public boolean editLicense(String LicName1) {
         click(By.xpath(LicPenBtn));
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(LicEditSaveBtn)));
@@ -57,7 +58,7 @@ public class LicensesPage extends PageBase {
     }
 
 
-    public boolean DeleteLicense() {
+    public boolean deleteLicense() {
 
         click(By.xpath(LicDeleteBtn));
         click(By.xpath(LicDeleteYesBtn));

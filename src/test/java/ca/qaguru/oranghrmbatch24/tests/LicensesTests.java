@@ -15,7 +15,7 @@ public class LicensesTests extends TestBase {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("Admin", "admin123", true, null);
         String Title = driver.getTitle();
-        String ExpectedTitle = driver.getTitle();
+        String ExpectedTitle = "Orangehrm";
         if (Title.equals(ExpectedTitle)) {
             System.out.println("Successfully Logged in");
         } else {
@@ -31,7 +31,7 @@ public class LicensesTests extends TestBase {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.selectMenu(MenuOptions.LICENSES);
         LicensesPage licensesPage = new LicensesPage(driver);
-        boolean banner = licensesPage.SaveNewLicenses("Google Cloud Professional");
+        boolean banner = licensesPage.saveNewLicenses("Google Cloud Professional");
         Assert.assertEquals(banner, true, "Add Green Save Banner displayed");
 
     }
@@ -43,7 +43,7 @@ public class LicensesTests extends TestBase {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.selectMenu(MenuOptions.LICENSES);
         LicensesPage licensesPage = new LicensesPage(driver);
-        boolean banner = licensesPage.EditLicense("Certified Information Systems Security Professional (CISSP)");
+        boolean banner = licensesPage.editLicense("Certified Information Systems Security Professional (CISSP)");
         Assert.assertEquals(banner, true, "Edit Green Save Banner displayed");
 
 
@@ -56,7 +56,7 @@ public class LicensesTests extends TestBase {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.selectMenu(MenuOptions.LICENSES);
         LicensesPage licensesPage = new LicensesPage(driver);
-        boolean banner = licensesPage.DeleteLicense();
+        boolean banner = licensesPage.deleteLicense();
         Assert.assertEquals(banner, true, "Delete Green Save Banner displayed");
 
     }
