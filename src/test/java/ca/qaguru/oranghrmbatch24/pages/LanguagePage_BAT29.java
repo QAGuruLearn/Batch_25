@@ -13,24 +13,21 @@ public class LanguagePage_BAT29 extends PageBase {
     private static final String LangAddButton = "//button[text()=' Add ']";
     private static final String LangTxtLevel="//div[contains(@class,'oxd-form-row')]//input[contains(@class, '--active')]";
     private final String LangDelBtn ="(//*[@class='oxd-icon-button oxd-table-cell-action-space'])[1]";
-    private final String CancelButton="//*[@type='button'][@class='oxd-button oxd-button--medium oxd-button--ghost']";
     private final String LangEditBtn ="(//*[@class='oxd-icon-button oxd-table-cell-action-space'])[2]";
     private final String LangTextBoxField="//div[@class='oxd-form-row']//descendant::input";
     private static final String DeleteConfirmButton="//*[@class='oxd-button oxd-button--medium oxd-button--label-danger orangehrm-button-margin']";
     private static final String LangSaveBtn="//button[@type='submit']";
     private static final String Banner="//*[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']";
-    private static final String selectAllCheckBox="//div[@class='oxd-checkbox-wrapper']//span[@class='oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input'][1]";
-    private static final String deleteAllButton="//button[@type='button' and @class='oxd-button oxd-button--medium oxd-button--label-danger orangehrm-horizontal-margin']";
+    private static final String selectAllCheckBox="//div[@class='oxd-checkbox-wrapper']//span[contains(@class,'oxd-checkbox')][1]";
+    private static final String deleteAllButton="//button[@type='button' and contains(@class,'--label-danger')]";
     private final String LogoutDropdownButton="//*[@class='oxd-userdropdown-name']";
     private final String LogoutButton="(//*[@role='menuitem'][@class='oxd-userdropdown-link'])[4]";
     public LanguagePage_BAT29(WebDriver driver) {super(driver);}
-
     public  void saveNewLanguage(String newLang) {
         click(By.xpath(LangAddButton));
         driver.findElement(By.xpath(LangTxtLevel)).sendKeys(newLang);
         click(By.xpath(LangSaveBtn));
     }
-
     public  boolean deleteLanguage(String delLanguage) {
 
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIME)).until(ExpectedConditions.elementToBeClickable(By.xpath(DeleteConfirmButton)));
@@ -38,8 +35,8 @@ public class LanguagePage_BAT29 extends PageBase {
         new WebDriverWait(driver,Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Banner)));
         boolean display_banner=driver.findElement(By.xpath(Banner)).isDisplayed();
         System.out.println("green banner with SUCCESS message visible :"+display_banner);
-        return display_banner;
 
+        return display_banner;
     }
     public void deleteButtonVisibleClickable()
     {
@@ -78,20 +75,17 @@ public class LanguagePage_BAT29 extends PageBase {
         click(By.xpath(LangEditBtn));
         Assert.assertTrue(isElementVisible(By.xpath(LangTextBoxField)),"EditText box not visible");
     }
-
     public void clickDeleteAllCheckBox(){
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectAllCheckBox)));
         click(By.xpath(selectAllCheckBox));
     }
-
     public boolean deleteAllLanguage(){
         WebDriverWait wait = new WebDriverWait(driver, 15);
         click(By.xpath(deleteAllButton));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(deleteAllButton)));
         return true;
     }
-
     public void clickDeleteConfirmationButton(){
         click(By.xpath(DeleteConfirmButton));
     }

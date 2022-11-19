@@ -54,7 +54,6 @@ public class LanguageTest_BAT29 extends TestBase {
         languagePage.clickDeleteConfirmationButton();
         Assert.assertEquals(banner,true,"Attempt Failed");
     }
-
     public void init(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("admin", "admin123", true, null);
