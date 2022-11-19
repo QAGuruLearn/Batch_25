@@ -13,7 +13,7 @@ public class VacancyTest extends TestBase {
            HeaderPage headerPage = new HeaderPage(driver);
            headerPage.selectMenu(MenuOptions.VACANCIES);
            VacancyPage vacancyPage=new VacancyPage(driver);
-           vacancyPage.saveN();
+           vacancyPage.searchVAcancyAndRESET();
 
        }
         @Test(priority = 2)
@@ -23,7 +23,7 @@ public class VacancyTest extends TestBase {
            HeaderPage headerPage = new HeaderPage(driver);
            headerPage.selectMenu(MenuOptions.VACANCIES);
            VacancyPage vacancyPage=new VacancyPage(driver);
-           vacancyPage.saveN1();
+           vacancyPage.addVacancySaveAndCancel();
 
        }
     @Test(priority = 3)
@@ -33,7 +33,7 @@ public class VacancyTest extends TestBase {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.selectMenu(MenuOptions.VACANCIES);
         VacancyPage vacancyPage = new VacancyPage(driver);
-        vacancyPage.saveN2();
+        vacancyPage.editVacancyAndVerifySaveAndDelete();
     }
 
     @Test(priority = 4)
@@ -43,7 +43,7 @@ public class VacancyTest extends TestBase {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.selectMenu(MenuOptions.VACANCIES);
         VacancyPage vacancyPage = new VacancyPage(driver);
-        vacancyPage.saveN3();
+        vacancyPage.deleteButtonVisible();
     }
     @Test(priority = 5)
     public void click()  {
@@ -52,7 +52,7 @@ public class VacancyTest extends TestBase {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.selectMenu(MenuOptions.VACANCIES);
         VacancyPage vacancyPage = new VacancyPage(driver);
-        vacancyPage.saveN4();
+        vacancyPage.CheckBoxClick();
     }
 
 
