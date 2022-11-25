@@ -67,12 +67,12 @@ public class VacancyPage extends PageBase {
   setText(By.xpath("(// input[@class='oxd-input oxd-input--active'])[3]"), " 6");
   new WebDriverWait(driver,Duration.ofSeconds(20))
           .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(saveBtn)));
-  Assert.assertTrue(isElementVisible(By.xpath(saveBtn)),"It is visible");
-  Assert.assertTrue(isElementClickable(By.xpath(saveBtn)),"It is not visible");
+  Assert.assertTrue(isElementVisible(By.xpath(saveBtn)),"saveBtn is visible");
+  Assert.assertTrue(isElementClickable(By.xpath(saveBtn)),"saveBtn is clickable");
   new WebDriverWait(driver,Duration.ofSeconds(20))
           .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(cancelBtn)));
-  Assert.assertTrue(isElementVisible(By.xpath(cancelBtn)),"It will cancel selected vacancy");
-  Assert.assertTrue(isElementClickable(By.xpath(cancelBtn)),"It will not cancel the selected vacancy");
+  Assert.assertTrue(isElementVisible(By.xpath(cancelBtn)),"cancelBtn is visible");
+  Assert.assertTrue(isElementClickable(By.xpath(cancelBtn)),"cancelBtn is clickable");
 
 
  }
@@ -88,26 +88,26 @@ public class VacancyPage extends PageBase {
   setText(By.xpath(("//textarea[@placeholder='Type description here']")), "All can apply");
   new WebDriverWait(driver,Duration.ofSeconds(20))
           .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(saveBtn)));
-  Assert.assertTrue(isElementVisible(By.xpath(saveBtn)),"It is visible");
-  Assert.assertTrue(isElementClickable(By.xpath(saveBtn)),"It is not visible");
+  Assert.assertTrue(isElementVisible(By.xpath(saveBtn)),"saveBtn is visible");
+  Assert.assertTrue(isElementClickable(By.xpath(saveBtn)),"saveBtn is clickable");
   new WebDriverWait(driver,Duration.ofSeconds(20))
           .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(cancelBtn)));
-  Assert.assertTrue(isElementVisible(By.xpath(cancelBtn)),"It will cancel selected vacancy");
-  Assert.assertTrue(isElementClickable(By.xpath(cancelBtn)),"It will not cancel the selected vacancy");
+  Assert.assertTrue(isElementVisible(By.xpath(cancelBtn)),"cancelBtn is visible");
+  Assert.assertTrue(isElementClickable(By.xpath(cancelBtn))," cancelBtn is clickable");
 
  }
 
  public void deleteButtonVisible()  {
   new WebDriverWait(driver,Duration.ofSeconds(200))
           .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(deleteBtn)));
-  Assert.assertTrue(isElementVisible(By.xpath(deleteBtn)),"It will delete the selected vacancy");
-  Assert.assertTrue(isElementClickable(By.xpath(deleteBtn)),"It will not delete the selected vacancy");
+  Assert.assertTrue(isElementVisible(By.xpath(deleteBtn)),"deleteBtn will visible");
+  Assert.assertTrue(isElementClickable(By.xpath(deleteBtn)),"deleteBtn will clickable");
  }
  public void CheckBoxClick()  {
   new WebDriverWait(driver,Duration.ofSeconds(20))
           .until(ExpectedConditions.presenceOfElementLocated(By.xpath(checkBoxClick)));
-  Assert.assertTrue(isElementVisible(By.xpath(checkBoxClick)),"It is clickable to select the vacancy");
-  Assert.assertTrue(isElementClickable(By.xpath(checkBoxClick)),"It is not clickable to select the vacancy");
+  Assert.assertTrue(isElementVisible(By.xpath(checkBoxClick)),"checkBoxClick will visible");
+  Assert.assertTrue(isElementClickable(By.xpath(checkBoxClick)),"checkBoxClick will clickable");
  }
 }
 
